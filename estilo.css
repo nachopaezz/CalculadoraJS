@@ -1,0 +1,138 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --text-color: #333;
+    --button-hover: #2980b9;
+    --result-bg: #fff;
+    --button-bg: #ecf0f1;
+    --operator-bg: #e67e22;
+    --equal-bg: #27ae60;
+    --reset-bg: #e74c3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+}
+
+.calculadora {
+    background-color: var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 100%;
+    width: 350px;
+}
+
+#resultado {
+    width: 100%;
+    height: 80px;
+    background-color: var(--result-bg);
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    font-size: 2rem;
+    text-align: right;
+    padding: 0.5rem 1rem;
+    color: var(--text-color);
+    overflow: hidden;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calculadora td {
+    padding: 0.5rem;
+}
+
+.calculadora td button {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calculadora td button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.calculadora td button:active {
+    transform: translateY(0);
+}
+
+/* Operadores */
+#suma, #resta, #multiplicacion, #division {
+    background-color: var(--operator-bg);
+    color: white;
+}
+
+/* Botón igual */
+#igual {
+    background-color: var(--equal-bg);
+    color: white;
+}
+
+/* Botón reset */
+#reset {
+    background-color: var(--reset-bg);
+    color: white;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 400px) {
+    .calculadora {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .calculadora td button {
+        height: 50px;
+        font-size: 1.1rem;
+    }
+
+    #resultado {
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-height: 600px) {
+    .calculadora {
+        padding: 1rem;
+    }
+
+    .calculadora td button {
+        height: 45px;
+    }
+
+    #resultado {
+        height: 50px;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Soporte para modo oscuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --button-bg: #34495e;
+        --text-color: #fff;
+        --result-bg: #2c3e50;
+    }
+}
