@@ -54,8 +54,9 @@ function init() {
     // Agregar soporte para teclado
     document.addEventListener('keydown', manejarTeclado);
 
-    // Inicializar display
+    // Inicializar display y historial
     actualizarDisplay();
+    actualizarHistorialUI();
 }
 
 function numeroATexto(numero) {
