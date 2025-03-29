@@ -132,13 +132,61 @@ function calcularResultado() {
 }
 
 function agregarAlHistorial(a, op, b, resultado) {
-    estado.historial.unshift({
-        operacion: `${a} ${op} ${b} = ${resultado}`,
+    const operacion = {
+        expresion: `${a} ${CONFIG.SIMBOLOS_OPERACION[op]} ${b} = ${resultado}`,
         timestamp: new Date()
-    });
+    };
 
+    estado.historial.unshift(operacion);
     if (estado.historial.length > CONFIG.MAX_HISTORIAL) {
         estado.historial.pop();
+    }
+
+    actualizarHistorialUI();
+}
+
+function actualizarHistorialUI() {
+    const historialLista = document.getElementById('historial-lista');
+    historialLista.innerHTML = '';
+
+    estado.historial.forEach((operacion) => {
+        const item = document.createElement('div');
+        item.className = 'historial-item';
+        
+        const expresion = document.createElement('div');
+        expresion.textContent = operacion.expresion;
+        
+        const tiempo = document.createElement('div');
+        tiempo.className = 'tiempo';
+        tiempo.textContent = formatearTiempo(operacion.timestamp);
+        
+        item.appendChild(expresion);
+        item.appendChild(tiempo);
+        historialLista.appendChild(item);
+    });
+}
+
+function formatearTiempo(fecha) {
+    const ahora = new Date();
+    const diferencia = ahora - fecha;
+    
+    // Menos de un minuto
+    if (diferencia < 60000) {
+        return 'Hace unos segundos';
+    }
+    // Menos de una hora
+    else if (diferencia < 3600000) {
+        const minutos = Math.floor(diferencia / 60000);
+        return `Hace ${minutos} ${minutos === 1 ? 'minuto' : 'minutos'}`;
+    }
+    // Menos de un día
+    else if (diferencia < 86400000) {
+        const horas = Math.floor(diferencia / 3600000);
+        return `Hace ${horas} ${horas === 1 ? 'hora' : 'horas'}`;
+    }
+    // Más de un día
+    else {
+        return fecha.toLocaleString();
     }
 }
 

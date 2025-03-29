@@ -25,33 +25,97 @@ body {
     background: linear-gradient(135deg, #2c3e50, #3498db);
 }
 
+.contenedor-calculadora {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    overflow: hidden;
+}
+
 .calculadora {
     background-color: var(--primary-color);
-    padding: 1.5rem;
+    padding: 1.2rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    max-width: 100%;
-    width: 350px;
+    width: 300px;
+}
+
+.calculadora table {
+    width: 100%;
+}
+
+.historial {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 15px;
+    width: 200px;
+    max-height: 350px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.historial h3 {
+    color: white;
+    margin: 0 0 0.8rem 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.historial-lista {
+    overflow-y: auto;
+    max-height: 280px;
+    padding-right: 0.5rem;
+}
+
+.historial-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.6rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    word-break: break-all;
+}
+
+.historial-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.historial-item .tiempo {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.25rem;
 }
 
 #resultado {
     width: 100%;
-    height: 80px;
+    height: 60px;
     background-color: var(--result-bg);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     border-radius: 12px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: right;
     padding: 0.5rem 1rem;
     color: var(--text-color);
     overflow: hidden;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 260px;
+    display: block;
 }
 
 .calculadora td {
-    padding: 0.5rem;
+    padding: 0.25rem;
+    width: 25%;
 }
 
 .calculadora td button {
@@ -68,13 +132,59 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.calculadora td button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .contenedor-calculadora {
+        flex-direction: column-reverse;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .calculadora {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .historial {
+        width: 100%;
+        max-height: 150px;
+    }
+
+    .historial-lista {
+        max-height: 80px;
+    }
 }
 
-.calculadora td button:active {
-    transform: translateY(0);
+@media (max-width: 400px) {
+    .calculadora td button {
+        height: 50px;
+        font-size: 1.1rem;
+    }
+
+    #resultado {
+        height: 50px;
+        font-size: 1.3rem;
+        min-width: 0;
+    }
+}
+
+/* Personalización del scrollbar */
+.historial-lista::-webkit-scrollbar {
+    width: 6px;
+}
+
+.historial-lista::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.historial-lista::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.historial-lista::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* Operadores */
@@ -93,39 +203,6 @@ body {
 #reset {
     background-color: var(--reset-bg);
     color: white;
-}
-
-/* Media queries para responsividad */
-@media (max-width: 400px) {
-    .calculadora {
-        width: 95%;
-        padding: 1rem;
-    }
-
-    .calculadora td button {
-        height: 50px;
-        font-size: 1.1rem;
-    }
-
-    #resultado {
-        height: 60px;
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-height: 600px) {
-    .calculadora {
-        padding: 1rem;
-    }
-
-    .calculadora td button {
-        height: 45px;
-    }
-
-    #resultado {
-        height: 50px;
-        margin-bottom: 1rem;
-    }
 }
 
 /* Soporte para modo oscuro */
