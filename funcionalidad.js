@@ -149,6 +149,17 @@ function actualizarHistorialUI() {
     const historialLista = document.getElementById('historial-lista');
     historialLista.innerHTML = '';
 
+    if (estado.historial.length === 0) {
+        const mensajeVacio = document.createElement('div');
+        mensajeVacio.className = 'historial-vacio';
+        mensajeVacio.innerHTML = `
+            <div>Sin operaciones recientes</div>
+            <div style="font-size: 0.8rem; margin-top: 0.5rem;">Los cálculos aparecerán aquí</div>
+        `;
+        historialLista.appendChild(mensajeVacio);
+        return;
+    }
+
     estado.historial.forEach((operacion) => {
         const item = document.createElement('div');
         item.className = 'historial-item';
@@ -253,18 +264,18 @@ function manejarTeclado(event) {
             break;
         case '/':
             setOperacion('/');
-            break;
+                    break;
         case '=':
         case 'Enter':
             calcularResultado();
-            break;
+                   break;
         case 'Escape':
             resetear();
-            break;
+                   break;
         case 'Backspace':
             borrarUltimoDigito();
-            break;
-    }
+                   break;   
+           }
 }
 
 function borrarUltimoDigito() {
