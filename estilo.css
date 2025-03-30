@@ -23,6 +23,8 @@ body {
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, #2c3e50, #3498db);
+    margin: 0;
+    padding: 0;
 }
 
 .contenedor-calculadora {
@@ -35,7 +37,9 @@ body {
     backdrop-filter: blur(20px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     max-width: 100%;
-    overflow: hidden;
+    width: fit-content;
+    margin: 1rem;
+    box-sizing: border-box;
 }
 
 .calculadora {
@@ -46,6 +50,8 @@ body {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     width: 300px;
+    min-width: 280px;
+    box-sizing: border-box;
 }
 
 .calculadora table {
@@ -53,7 +59,7 @@ body {
 }
 
 .historial {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(44, 62, 80, 0.6); /* Color más oscuro y semitransparente */
     padding: 1rem;
     border-radius: 15px;
     width: 200px;
@@ -151,34 +157,74 @@ body {
 
 /* Media queries para responsividad */
 @media (max-width: 768px) {
+    body {
+        padding: 0;
+        align-items: flex-start;
+    }
+
     .contenedor-calculadora {
         flex-direction: column-reverse;
         padding: 1rem;
         gap: 1rem;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+        min-height: 100vh;
     }
 
     .calculadora {
         width: 100%;
-        max-width: 300px;
+        min-width: unset;
+        padding: 1rem;
     }
 
     .historial {
         width: 100%;
-        height: 250px; /* Altura más pequeña en móviles */
-        max-height: 250px;
-    }
-}
-
-@media (max-width: 400px) {
-    .calculadora td button {
-        height: 50px;
-        font-size: 1.1rem;
+        height: 200px;
+        max-height: 200px;
+        background: rgba(44, 62, 80, 0.8);
     }
 
     #resultado {
-        height: 50px;
         font-size: 1.3rem;
-        min-width: 0;
+        height: 50px;
+        min-width: unset;
+    }
+
+    .calculadora td {
+        padding: 0.3rem;
+    }
+
+    .calculadora td button {
+        height: 50px;
+        font-size: 1.2rem;
+        padding: 0;
+        width: 100%;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 360px) {
+    .contenedor-calculadora {
+        padding: 0.5rem;
+    }
+
+    .calculadora {
+        padding: 0.5rem;
+    }
+
+    .calculadora td {
+        padding: 0.15rem;
+    }
+
+    .calculadora td button {
+        height: 45px;
+        font-size: 1.1rem;
+        border-radius: 6px;
+    }
+
+    #resultado {
+        margin-bottom: 0.5rem;
     }
 }
 
